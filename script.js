@@ -414,3 +414,89 @@ document.addEventListener('DOMContentLoaded', () => {
     // Siapkan rendering awal jika user memuat ulang halaman di step-1a
     renderSkillOptionsGrid();
 });
+
+//UI/UX YANG LEBIH INTERAKTIF
+
+(function enhanceUIUX() {
+    // 1. Suntikkan Styling Tambahan untuk Efek Interaktif (CSS Injection)
+    const stylePatch = document.createElement('style');
+    stylePatch.innerHTML = `
+        /* Efek Transisi Kartu & Tombol yang Lebih Hidup */
+        .step-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .option-card, .choice-card, .skill-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+        }
+        
+        .option-card:hover, .choice-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.15) !important;
+        }
+
+        /* Modern Floating Toast Notification (Pengganti alert() standar) */
+        #careerai-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        #careerai-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        #careerai-toast i {
+            color: #3b82f6;
+        }
+    `;
+    document.head.appendChild(stylePatch);
+
+    // 2. Buat Elemen Toast di dalam DOM secara otomatis
+    const toastEl = document.createElement('div');
+    toastEl.id = 'careerai-toast';
+    toastEl.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span id="toast-message">Pesan notifikasi</span>`;
+    document.body.appendChild(toastEl);
+
+    // 3. Fungsi Global untuk Menampilkan Toast Interaktif yang Elegan
+    window.showToast = function(message) {
+        const msgSpan = document.getElementById('toast-message');
+        if (msgSpan) msgSpan.innerText = message;
+        
+        toastEl.classList.add('show');
+        setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 3000);
+    };
+
+    // 4. Interaksi Tambahan: Efek Suara/Visual Lembut saat Berpindah Langkah
+    const originalGoToStep = window.goToStep;
+    if (typeof originalGoToStep === 'function') {
+        window.goToStep = function(stepId) {
+            originalGoToStep(stepId);
+            
+            // Auto-scroll halus ke bagian atas kartu agar pengguna selalu fokus
+            const activeCard = document.getElementById(stepId);
+            if (activeCard) {
+                activeCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        };
+    }
+
+    console.log("✨ CareerAI UI/UX Interactive Enhancement Loaded Successfully!");
+})();
