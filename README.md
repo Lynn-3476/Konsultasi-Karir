@@ -1,4 +1,4 @@
-# 🚀 CareerAI - Website Konsultasi Karir Berbasis AI
+# CareerAI - Website Konsultasi Karir Berbasis AI
 
 Platform konsultasi karir yang membantu kamu menemukan karir yang paling cocok berdasarkan kemampuan, kebiasaan, dan passion dengan bantuan AI.
 
