@@ -316,3 +316,69 @@ function generateAIReply(userText) {
 function escapeHtml(text) {
     return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
      }
+
+
+
+// EKSTENSI PILIHAN KARIR BARU
+
+// 1. Menambahkan data detail karir baru ke dalam 'careerDatabase'
+if (typeof careerDatabase !== 'undefined') {
+    careerDatabase["AI Prompt Engineer"] = {
+        prep: [
+            "Memahami cara kerja Large Language Models (LLM) dan generative AI",
+            "Menguasai teknik prompt structuring (system prompt, few-shot prompting)",
+            "Memiliki kemampuan logika dan problem-solving yang kuat"
+        ],
+        challenges: [
+            "Teknologi AI berkembang sangat cepat sehingga harus terus belajar",
+            "Perlu ketelitian tinggi dalam mengevaluasi hasil keluaran AI"
+        ]
+    };
+
+    careerDatabase["Cybersecurity Specialist"] = {
+        prep: [
+            "Mempelajari dasar jaringan komputer, TCP/IP, dan sistem operasi Linux",
+            "Memahami konsep ethical hacking dan kerentanan sistem (vulnerabilities)",
+            "Mengikuti sertifikasi dasar seperti CompTIA Security+"
+        ],
+        challenges: [
+            "Tanggung jawab besar dalam mengamankan data sensitif perusahaan",
+            "Ancaman siber yang dinamis, menuntut kesiapsiagaan 24/7"
+        ]
+    };
+
+    careerDatabase["Game Developer (Indie)"] = {
+        prep: [
+            "Menguasai game engine populer seperti Unity atau Unreal Engine",
+            "Memahami dasar pemrograman (C# atau C++) serta logika matematika game",
+            "Mempelajari dasar desain level dan aset visual 2D/3D"
+        ],
+        challenges: [
+            "Proses pengembangan bisa memakan waktu yang sangat panjang",
+            "Kompetisi industri game yang ketat di pasaran global"
+        ]
+    };
+}
+
+// 2. Menambahkan opsi ke 'easySkillsList' untuk pengguna yang memilih jalur kemampuan mudah
+if (typeof easySkillsList !== 'undefined') {
+    easySkillsList.push(
+        { 
+            title: "AI Prompt Engineering", 
+            icon: "fa-robot", 
+            desc: "Seni dan teknik berinteraksi dengan AI untuk memaksimalkan efisiensi kerja dan konten." 
+        },
+        { 
+            title: "Cybersecurity Dasar", 
+            icon: "fa-shield-halved", 
+            desc: "Mempelajari cara mengamankan data pribadi dan jaringan dari risiko peretasan." 
+        },
+        { 
+            title: "Game Development Pemula", 
+            icon: "fa-gamepad", 
+            desc: "Membuat game sederhana menggunakan tool visual scripting atau engine ramah pemula." 
+        }
+    );
+}
+
+
