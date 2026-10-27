@@ -259,23 +259,38 @@ function rejectCareer() {
     goToStep('step-2');
 }
 
-// DILEMA PASSION (STEP 4)
+// PERBAIKAN FUNGSI DI STEP 4 (PASSION VS KEMAMPUAN)
 function handlePassionDilemma(hasDilemma) {
     userState.hasPassionDilemma = hasDilemma;
     const subBox = document.getElementById('passion-choice-sub');
+    
+    if (!subBox) return;
+
     if (hasDilemma) {
+        // Tampilkan pilihan sub-langkah
         subBox.classList.remove('hidden');
+        
+        // SOLUSI BUG: Auto-scroll agar pengguna langsung melihat pilihan baru yang muncul di bawah
+        setTimeout(() => {
+            subBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+        
     } else {
+        // Sembunyikan kembali jika berubah pikiran
         subBox.classList.add('hidden');
         userState.chosenPath = 'skill';
         renderFinalRoadmap();
     }
 }
 
+// FUNGSI SAAT USER MEMILIH JALAN KARIR (PASSION ATAU SKILL)
 function selectPath(path) {
     userState.chosenPath = path;
+    
+    // Berikan efek visual klik pada kartu yang dipilih sebelum pindah step
     renderFinalRoadmap();
 }
+
 
 // ROADMAP FINAL & INTEGRASI PENCARIAN LEARNING (STEP 5)
 function renderFinalRoadmap() {
