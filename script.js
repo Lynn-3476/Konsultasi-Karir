@@ -779,3 +779,82 @@ if (typeof easySkillsList !== 'undefined') {
         };
     }
 })();
+
+
+let selectedChosenSkill = "";
+
+function selectPredefinedSkill(element, skillName) {
+    // Bersihkan semua pilihan kartu lain
+    document.querySelectorAll('.skill-choice-card').forEach(card => {
+        card.style.borderColor = "#e2e8f0";
+        card.style.backgroundColor = "#ffffff";
+        card.style.boxShadow = "none";
+    });
+    
+    // Berikan efek aktif pada kartu yang dipilih user
+    element.style.borderColor = "#3b82f6";
+    element.style.backgroundColor = "#eff6ff";
+    element.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+    selectedChosenSkill = skillName;
+}
+
+// Jalankan modifikasi DOM otomatis saat halaman siap
+window.addEventListener('DOMContentLoaded', () => {
+    const step1aCard = document.getElementById('step-1a');
+    if (!step1aCard) return;
+
+    // 1. Perbarui teks sub-judul step-1a agar lebih intuitif
+    const subtitle = step1aCard.querySelector('.step-header p');
+    if (subtitle) {
+        subtitle.innerText = "Silakan pilih salah satu bidang atau keahlian utama yang paling mewakili kemampuan Anda di bawah ini:";
+    }
+
+    // 2. Daftar pilihan bidang/kemampuan dalam bentuk list/grid profesional
+    const availableSkillOptions = [
+        { title: "Pemrograman & IT", icon: "fa-code", desc: "Membuat website, aplikasi, logika sistem, dan software." },
+        { title: "Desain & Kreatif Visual", icon: "fa-pen-ruler", desc: "Merancang antarmuka (UI/UX), grafis, logo, dan aset visual." },
+        { title: "Digital Marketing & Ads", icon: "fa-bullhorn", desc: "Mengelola kampanye iklan, media sosial, dan strategi brand." },
+        { title: "Analisis Data & Excel", icon: "fa-chart-pie", desc: "Mengolah angka, laporan statistik, dan metrik bisnis." },
+        { title: "Content Writing & Copy", icon: "fa-feather-pointed", desc: "Menulis artikel, blog, naskah, dan salinan teks persuasif." },
+        { title: "Bisnis, Keuangan & Admin", icon: "fa-briefcase", desc: "Pengelolaan bujet, pembukuan, operasional, dan administrasi." }
+    ];
+
+    // 3. Ganti elemen input teks lama dengan tampilan grid pilihan list
+    const formGroup = step1aCard.querySelector('.form-group');
+    if (formGroup) {
+        let gridHtml = `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1rem;">`;
+        
+        availableSkillOptions.forEach(item => {
+            gridHtml += `
+                <div class="skill-choice-card" onclick="selectPredefinedSkill(this, '${item.title}')" style="border: 2px solid #e2e8f0; border-radius: 12px; padding: 1.2rem; cursor: pointer; transition: all 0.2s; background: #fff; text-align: left;">
+                    <i class="fa-solid ${item.icon}" style="font-size: 1.8rem; color: #3b82f6; margin-bottom: 0.5rem; display: block;"></i>
+                    <h4 style="font-size: 1rem; margin-bottom: 0.3rem; color: #0f172a; font-weight: 600;">${item.title}</h4>
+                    <p style="font-size: 0.8rem; color: #64748b; line-height: 1.4;">${item.desc}</p>
+                </div>
+            `;
+        });
+        gridHtml += `</div>`;
+        
+        formGroup.innerHTML = gridHtml;
+    }
+
+    // 4. Ambil alih fungsi tombol 'submitKnownSkill' agar otomatis memproses pilihan list
+    if (typeof window.submitKnownSkill === 'function') {
+        window.submitKnownSkill = function() {
+            if (!selectedChosenSkill) {
+                alert("Harap pilih salah satu bidang keahlian terlebih dahulu sebelum melanjutkan!");
+                return;
+            }
+            
+            // Simpan ke state global yang sudah ada di sistem lama
+            if (typeof userState !== 'undefined') {
+                userState.skills = selectedChosenSkill;
+            }
+            
+            // Picu fungsi pemroses rekomendasi karir bawaan
+            if (typeof generateCareerOptionsBasedOnInput === 'function') {
+                generateCareerOptionsBasedOnInput(selectedChosenSkill);
+            }
+        };
+    }
+});
