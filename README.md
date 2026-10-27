@@ -2,9 +2,8 @@
 
 Platform konsultasi karir yang membantu kamu menemukan karir yang paling cocok berdasarkan kemampuan, kebiasaan, dan passion dengan bantuan AI.
 
-> Bingung mau kerja apa? Punya hobi tapi gak tau bisa jadi duit? KarirKu AI akan bantu observasi dan merekomendasikan jalur karir terbaik untukmu.
 
-### 🧠 Cara Kerja
+Cara Kerja
 
 1.  **Cek Kemampuan:** User menjawab pertanyaan seputar bidang yang dikuasai.
 2.  **Jika Tidak Tahu Kemampuan:** AI akan bertanya tentang kebiasaan sehari-hari dan mengobservasi kebiasaan yang berpotensi jadi karir.
@@ -18,7 +17,7 @@ Platform konsultasi karir yang membantu kamu menemukan karir yang paling cocok b
     - **Pilih Kemampuan:** AI berikan saran pengembangan skill ke tingkat lanjut.
 6.  **Jika Tidak Punya Kebiasaan Produktif:** AI akan menyarankan skill yang mudah dipelajari dan punya peluang karir tinggi.
 
-### ✨ Fitur Utama
+Fitur Utama
 
 - [x] **AI Career Consultant** - Model AI sebagai konsultan karir personal
 - [x] **Skill Assessment** - Segmen pertanyaan untuk menggali kemampuan user
@@ -29,8 +28,7 @@ Platform konsultasi karir yang membantu kamu menemukan karir yang paling cocok b
 - [x] **Learning Resource** - Rekomendasi video belajar dari YouTube / TikTok / IG
 - [x] **Motivation Page** - Wejangan semangat setelah user memilih karir final
 
-
-### 🎯 Target User
+Target User
 Siswa SMP/SMA, Mahasiswa, Fresh Graduate, dan siapa saja yang masih bingung menentukan arah karir.
 
 ---
