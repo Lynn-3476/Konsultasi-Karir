@@ -259,33 +259,38 @@ function rejectCareer() {
     goToStep('step-2');
 }
 
-// PERBAIKAN FUNGSI DI STEP 4 (PASSION VS KEMAMPUAN)
+
 function handlePassionDilemma(hasDilemma) {
     userState.hasPassionDilemma = hasDilemma;
-    const subBox = document.getElementById('passion-choice-sub');
     
-    if (!subBox) return;
-
     if (hasDilemma) {
-        // Tampilkan pilihan sub-langkah
-        subBox.classList.remove('hidden');
+        // Berikan informasi ramah kepada user bahwa mereka akan diarahkan ulang
+        alert("Mari kita sesuaikan kembali! Anda akan diarahkan ke halaman pemilihan bidang keahlian agar dapat memilih bidang yang sesuai dengan passion Anda.");
         
-        // SOLUSI BUG: Auto-scroll agar pengguna langsung melihat pilihan baru yang muncul di bawah
-        setTimeout(() => {
-            subBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
+        // Reset pilihan skill/karir sebelumnya agar bersih saat memilih ulang
+        userState.skills = '';
+        userState.selectedCareer = null;
+        userState.chosenPath = null;
+        
+        // Sembunyikan sub-box jika sempat terbuka
+        const subBox = document.getElementById('passion-choice-sub');
+        if (subBox) {
+            subBox.classList.add('hidden');
+        }
+        
+        // Langsung arahkan kembali ke Langkah 1A (Pemilihan Keahlian / Bidang)
+        goToStep('step-1a');
         
     } else {
-        // Sembunyikan kembali jika berubah pikiran
-        subBox.classList.add('hidden');
+        // Jika user merasa karir sudah sesuai dengan passion & kemampuan
+        const subBox = document.getElementById('passion-choice-sub');
+        if (subBox) {
+            subBox.classList.add('hidden');
+        }
         userState.chosenPath = 'skill';
         renderFinalRoadmap();
     }
-}
-
-// FUNGSI SAAT USER MEMILIH JALAN KARIR (PASSION ATAU SKILL)
-function selectPath(path) {
-    userState.chosenPath = path;
+    }
     
     // Berikan efek visual klik pada kartu yang dipilih sebelum pindah step
     renderFinalRoadmap();
