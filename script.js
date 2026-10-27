@@ -858,3 +858,35 @@ window.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
+// Variabel untuk menyimpan pilihan skill dari card list
+let selectedSkillCardValue = "";
+
+function selectCardSkill(element, skillName) {
+    // Hilangkan highlight dari semua kartu pilihan
+    document.querySelectorAll('.skill-choice-card').forEach(card => {
+        card.style.borderColor = "var(--border-color)";
+        card.style.backgroundColor = "var(--bg-card)";
+        card.style.boxShadow = "none";
+    });
+    
+    // Berikan efek aktif pada kartu yang sedang dipilih user
+    element.style.borderColor = "var(--primary)";
+    element.style.backgroundColor = "var(--primary-light)";
+    element.style.boxShadow = "var(--shadow-md)";
+    
+    selectedSkillCardValue = skillName;
+}
+
+function submitChosenSkillCard() {
+    if (!selectedSkillCardValue) {
+        alert("Silakan pilih salah satu bidang keahlian terlebih dahulu!");
+        return;
+    }
+    
+    // Simpan ke state global sistem
+    userState.skills = selectedSkillCardValue;
+    
+    // Lanjutkan ke proses pembuatan rekomendasi karir
+    generateCareerOptionsBasedOnInput(selectedSkillCardValue);
+                        }
