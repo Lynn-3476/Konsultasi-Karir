@@ -1,7 +1,3 @@
-/* ============================================
-   CareerAI - style.css (FIXED VERSION)
-   ============================================ */
-
 :root {
     --primary: #3b82f6;
     --primary-hover: #2563eb;
@@ -21,10 +17,7 @@
     --radius: 12px;
 }
 
-/* ✅ FIX: Selector universal — sebelumnya hilang "*" */
-*,
-*::before,
-*::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -35,10 +28,9 @@ body {
     background-color: var(--bg-main);
     color: var(--text-dark);
     line-height: 1.6;
-    min-height: 100vh;
 }
 
-/* ==================== NAVBAR ==================== */
+/* NAVBAR */
 .navbar {
     background-color: var(--bg-card);
     border-bottom: 1px solid var(--border-color);
@@ -46,7 +38,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow-sm);
 }
 
 .nav-container {
@@ -59,15 +50,11 @@ body {
 
 .logo {
     font-size: 1.35rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--primary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.logo i {
-    font-size: 1.5rem;
 }
 
 .nav-actions {
@@ -90,20 +77,19 @@ body {
     gap: 0.4rem;
 }
 
-.nav-btn.active,
-.nav-btn:hover {
+.nav-btn.active, .nav-btn:hover {
     background-color: var(--primary-light);
     color: var(--primary);
 }
 
-/* ==================== MAIN CONTAINER ==================== */
+/* MAIN CONTAINER */
 .main-container {
     max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
-/* ==================== PROGRESS BAR ==================== */
+/* PROGRESS BAR */
 .progress-container {
     width: 100%;
     height: 8px;
@@ -116,12 +102,11 @@ body {
 .progress-bar {
     height: 100%;
     width: 20%;
-    background: linear-gradient(90deg, var(--primary), #818cf8);
+    background-color: var(--primary);
     transition: width 0.4s ease;
-    border-radius: 4px;
 }
 
-/* ==================== STEP CARD ==================== */
+/* STEP CARD */
 .step-card {
     background: var(--bg-card);
     padding: 2.5rem;
@@ -138,7 +123,7 @@ body {
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .step-header {
@@ -168,7 +153,7 @@ body {
     color: var(--text-muted);
 }
 
-/* ==================== FORMS & INPUTS ==================== */
+/* FORMS & INPUTS */
 .question-box {
     text-align: center;
 }
@@ -188,7 +173,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.form-group input,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -196,34 +180,22 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     transition: border 0.2s;
-    resize: vertical;
 }
 
-.form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.hint {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 0.3rem;
-    display: block;
-}
-
-/* ==================== BUTTONS ==================== */
+/* BUTTONS */
 .btn-group {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .btn-group.vertical {
     flex-direction: column;
-    align-items: center;
 }
 
 .btn {
@@ -247,8 +219,6 @@ body {
 
 .btn-primary:hover {
     background-color: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -260,35 +230,14 @@ body {
     background-color: #e2e8f0;
 }
 
-.btn-outline {
-    border: 1.5px solid var(--border-color);
-    background: transparent;
-    color: var(--text-dark);
-}
-
-.btn-outline:hover {
-    background: var(--bg-main);
-    border-color: var(--secondary);
-}
-
 .btn-success {
     background-color: var(--success);
     color: white;
 }
 
-.btn-success:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-}
-
 .btn-danger {
     background-color: var(--danger);
     color: white;
-}
-
-.btn-danger:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
 }
 
 .btn-secondary-link {
@@ -301,30 +250,26 @@ body {
     margin-top: 0.5rem;
 }
 
-.btn-secondary-link:hover {
-    color: var(--primary);
-}
-
 .btn-sm {
     padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
 }
 
-/* ==================== CARDS & GRIDS ==================== */
+/* CARD GRIDS & SELECTION */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.2rem;
     margin-bottom: 1.5rem;
 }
 
 .option-card {
     background: var(--bg-card);
-    border: 1.5px solid var(--border-color);
+    border: 2px solid var(--border-color);
     padding: 1.5rem;
     border-radius: var(--radius);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -336,6 +281,12 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.option-card.selected-card {
+    border-color: var(--primary) !important;
+    background-color: var(--primary-light) !important;
+    box-shadow: var(--shadow-md);
+}
+
 .option-card .icon {
     font-size: 2rem;
     color: var(--primary);
@@ -343,7 +294,8 @@ body {
 }
 
 .option-card h4 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    color: var(--text-dark);
 }
 
 .option-card p {
@@ -351,30 +303,7 @@ body {
     color: var(--text-muted);
 }
 
-/* ✅ FIX: Style untuk skill-choice-card (sebelumnya tidak ada) */
-.skill-choice-card {
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--bg-card);
-    text-align: left;
-}
-
-.skill-choice-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.skill-choice-card.selected {
-    border-color: var(--primary);
-    background-color: var(--primary-light);
-    box-shadow: var(--shadow-md);
-}
-
-/* ==================== CAREER DETAIL BOX ==================== */
+/* CAREER DETAIL BOX */
 .career-detail-box {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -383,9 +312,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .career-detail-box {
-        grid-template-columns: 1fr;
-    }
+    .career-detail-box { grid-template-columns: 1fr; }
 }
 
 .detail-section {
@@ -444,7 +371,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* ==================== DILEMMA CARDS ==================== */
+/* DILEMMA CARDS */
 .dilemma-cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -453,9 +380,7 @@ body {
 }
 
 @media (max-width: 600px) {
-    .dilemma-cards {
-        grid-template-columns: 1fr;
-    }
+    .dilemma-cards { grid-template-columns: 1fr; }
 }
 
 .choice-card {
@@ -470,8 +395,6 @@ body {
 .choice-card:hover {
     border-color: var(--primary);
     background-color: var(--primary-light);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
 }
 
 .choice-card .icon {
@@ -480,15 +403,8 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.choice-card h4 {
-    margin-bottom: 0.5rem;
-}
-
-.choice-card p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
+.choice-card h4 { margin-bottom: 0.5rem; }
+.choice-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
 
 .divider {
     border: 0;
@@ -501,11 +417,9 @@ body {
     animation: fadeIn 0.4s ease;
 }
 
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
-/* ==================== ENCOURAGEMENT & ROADMAP ==================== */
+/* ENCOURAGEMENT & ROADMAP */
 .encouragement-banner {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
     color: white;
@@ -513,7 +427,6 @@ body {
     border-radius: var(--radius);
     position: relative;
     margin-bottom: 2rem;
-    font-style: italic;
     box-shadow: var(--shadow-md);
 }
 
@@ -530,6 +443,7 @@ body {
     z-index: 1;
     font-size: 1rem;
     font-weight: 500;
+    font-style: italic;
 }
 
 .modules-grid {
@@ -537,7 +451,6 @@ body {
     flex-direction: column;
     gap: 0.8rem;
     margin-top: 1rem;
-    margin-bottom: 1rem;
 }
 
 .module-item {
@@ -548,12 +461,6 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    transition: all 0.2s;
-}
-
-.module-item:hover {
-    border-color: var(--primary);
-    background: var(--primary-light);
 }
 
 .module-number {
@@ -587,13 +494,11 @@ body {
     align-items: center;
     gap: 1rem;
     transition: all 0.2s;
-    background: var(--bg-card);
 }
 
 .platform-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
-    border-color: var(--primary);
 }
 
 .platform-card i {
@@ -604,21 +509,12 @@ body {
 .platform-card.tt i { color: #000000; }
 .platform-card.ig i { color: #e1306c; }
 
-.platform-card div strong {
-    display: block;
-    font-size: 0.9rem;
-}
+.platform-card div strong { display: block; font-size: 0.9rem; }
+.platform-card div span { font-size: 0.75rem; color: var(--text-muted); }
 
-.platform-card div span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
+.margin-top { margin-top: 1.5rem; }
 
-.margin-top {
-    margin-top: 2rem;
-}
-
-/* ==================== CHAT SECTION ==================== */
+/* CHAT SECTION */
 .chat-container {
     background: var(--bg-card);
     border-radius: var(--radius);
@@ -647,23 +543,9 @@ body {
     color: var(--primary);
 }
 
-.ai-profile h3 {
-    font-size: 1rem;
-    margin-bottom: 0.1rem;
-}
-
-.ai-profile span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.online-dot {
-    color: var(--success);
-    font-size: 0.6rem;
-}
+.ai-profile h3 { font-size: 1rem; margin-bottom: 0.1rem; }
+.ai-profile span { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem; }
+.online-dot { color: var(--success); font-size: 0.6rem; }
 
 .chat-messages {
     flex: 1;
@@ -674,28 +556,9 @@ body {
     gap: 1rem;
 }
 
-/* ✅ FIX: Custom scrollbar untuk chat */
-.chat-messages::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chat-messages::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.chat-messages::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 3px;
-}
-
-.chat-messages::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary);
-}
-
 .message {
     display: flex;
     max-width: 80%;
-    animation: fadeIn 0.3s ease;
 }
 
 .message.user {
@@ -739,71 +602,8 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     outline: none;
-    font-size: 0.95rem;
 }
 
 .chat-input-area input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* ✅ FIX: Typing indicator untuk chat */
-.typing-indicator {
-    display: flex;
-    gap: 4px;
-    padding: 0.8rem 1.2rem;
-    background-color: var(--bg-main);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    border-bottom-left-radius: 2px;
-    width: fit-content;
-}
-
-.typing-indicator span {
-    width: 8px;
-    height: 8px;
-    background: var(--text-muted);
-    border-radius: 50%;
-    animation: typingBounce 1.4s infinite ease-in-out;
-}
-
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes typingBounce {
-    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-    40% { transform: scale(1); opacity: 1; }
-}
-
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 640px) {
-    .navbar {
-        padding: 0.8rem 1rem;
-    }
-
-    .nav-container {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .step-card {
-        padding: 1.5rem;
-    }
-
-    .step-header h2 {
-        font-size: 1.4rem;
-    }
-
-    .btn-group {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .chat-container {
-        height: 500px;
-    }
-
-    .message {
-        max-width: 90%;
-    }
-}
+       }
