@@ -381,4 +381,226 @@ if (typeof easySkillsList !== 'undefined') {
     );
 }
 
+// =================================================================
+// CAREERAI EXTENSION MODULE: MULTI-INDUSTRY CAREER EXPANSION
+// Menyediakan database karir di bidang Kuliner, Bisnis, Konten Kreator,
+// Olahraga, Video/Fotografi, & Industri Kreatif lainnya.
+// =================================================================
 
+(function expandCareerDatabase() {
+    // 1. Integrasi Database Karir Berbagai Bidang ke 'careerDatabase'
+    if (typeof careerDatabase !== 'undefined') {
+        const newCareers = {
+            // === BIDANG KULINER & F&B ===
+            "Culinary Entrepreneur / Cloud Kitchen Owner": {
+                prep: [
+                    "Kuasai teknik memasak & standardisasi resep (SOP)",
+                    "Pelajari kalkulasi Food Cost, Margin, dan Manajemen Stok",
+                    "Pahami strategi pengiriman online & branding merchant F&B"
+                ],
+                challenges: [
+                    "Fluktuasi harga bahan baku di pasaran",
+                    "Persaingan ketat di platform pengiriman kuliner online",
+                    "Menjaga konsistensi cita rasa dan higienitas produk"
+                ]
+            },
+            "Food Stylist & Content Reviewer": {
+                prep: [
+                    "Pelajari teknik pencahayaan dan penataan makanan (plating)",
+                    "Kuasai fotografi makanan menggunakan kamera atau smartphone",
+                    "Pahami tren media sosial dan teknik review culinary persuasif"
+                ],
+                challenges: [
+                    "Tuntutan kontinuitas estetika visual yang tinggi",
+                    "Makanan cepat layu/rusak saat proses pengambilan gambar"
+                ]
+            },
+
+            // === BIDANG KONTEN KREATOR & MEDIA KREATIF ===
+            "Short-Form Content Creator (TikTok/Reels)": {
+                prep: [
+                    "Kuasai perancangan skenario/hook 3 detik pertama",
+                    "Pelajari aplikasi editing seluler (CapCut, VN, Premiere Rush)",
+                    "Pahami analitik platform, algoritma, dan personal branding"
+                ],
+                challenges: [
+                    "Burnout akibat tuntutan konsistensi upload harian",
+                    "Perubahan algoritma media sosial yang tidak menentu"
+                ]
+            },
+            "Videographer & Video Editor Professional": {
+                prep: [
+                    "Kuasai pengoperasian kamera, lighting, dan audio recording",
+                    "Pelajari software editing kelas industri (Premiere Pro / DaVinci Resolve)",
+                    "Pahami teknik storytelling visual dan color grading"
+                ],
+                challenges: [
+                    "Beban kerja rendering dan manajemen file yang besar",
+                    "Tuntutan revisi ketat dari klien atau sutradara"
+                ]
+            },
+            "Commercial Photographer": {
+                prep: [
+                    "Kuasai segitiga eksposur, komposisi visual, dan studi pencahayaan",
+                    "Pelajari retouching foto menggunakan Lightroom & Photoshop",
+                    "Membangun portofolio karya komersial yang solid"
+                ],
+                challenges: [
+                    "Investasi awal peralatan fotografi yang relatif tinggi",
+                    "Musim sepi orderan (tuntutan networking yang aktif)"
+                ]
+            },
+
+            // === BIDANG BISNIS, MARKETING & MANAJEMEN ===
+            "Digital Business Development / Entrepreneur": {
+                prep: [
+                    "Mempelajari dasar analisis pasar, riset kompetitor, dan BMC",
+                    "Pahami manajemen keuangan bisnis awal (cashflow)",
+                    "Kuasai strategi negosiasi dan kemitraan strategis"
+                ],
+                challenges: [
+                    "Risiko finansial dan ketidakpastian pendapatan di fase awal",
+                    "Tanggung jawab mengambil keputusan strategis di saat kritis"
+                ]
+            },
+            "Social Media Specialist & Community Manager": {
+                prep: [
+                    "Mempelajari social media copywriting dan editorial calendar",
+                    "Kuasai tools analitik (Meta Business Suite, Google Analytics)",
+                    "Pahami strategi interaksi dan manajemen krisis komunitas"
+                ],
+                challenges: [
+                    "Tuntutan responsif terhadap isu dan tren terkini 24/7",
+                    "Mengelola komentar negatif atau krisis reputasi brand"
+                ]
+            },
+
+            // === BIDANG OLAHRAGA, HEALTH & WELLNESS ===
+            "Personal Trainer & Fitness Coach": {
+                prep: [
+                    "Mempelajari anatomi tubuh, biomekanika, dan ilmu nutrisi dasar",
+                    "Mengikuti sertifikasi kebugaran resmi (APKI, NASM, dll.)",
+                    "Kuasai penyusunan program latihan yang aman & rasional"
+                ],
+                challenges: [
+                    "Membutuhkan stamina fisik yang prima sepanjang hari",
+                    "Menjaga motivasi dan kepatuhan klien terhadap program"
+                ]
+            },
+            "Sports Content Creator & Analyst": {
+                prep: [
+                    "Kuasai analisis taktik, statistik pertandingan, dan sejarah olahraga",
+                    "Pelajari public speaking dan teknik membawakan ulasan menarik",
+                    "Mampu memproduksi konten analisis visual cepat di media sosial"
+                ],
+                challenges: [
+                    "Perdebatan opini yang panas dari komunitas penggemar",
+                    "Tuntut update tajam langsung saat pertandingan berlangsung"
+                ]
+            }
+        };
+
+        // Penggabungan aman ke objek global
+        Object.assign(careerDatabase, newCareers);
+    }
+
+    // 2. Memperbanyak Opsi Kemampuan Mudah & Peluang Tinggi ('easySkillsList')
+    if (typeof easySkillsList !== 'undefined') {
+        const newSkills = [
+            {
+                title: "Editing Video HP & Content Creation",
+                icon: "fa-video",
+                desc: "Membuat video pendek estetis untuk promosi atau hiburan langsung dari smartphone."
+            },
+            {
+                title: "Bisnis Kuliner Rumahan / Cloud Kitchen",
+                icon: "fa-utensils",
+                desc: "Membuat dan memasarkan produk makanan/minuman dengan sistem pesan-antar online."
+            },
+            {
+                title: "Fotografi Produk & Smartphone",
+                icon: "fa-camera",
+                desc: "Menghasilkan foto produk komersial yang menarik untuk toko online dan UMKM."
+            },
+            {
+                title: "Social Media Admin & Management",
+                icon: "fa-hashtag",
+                desc: "Mengelola akun media sosial bisnis, merencanakan jadwal posting, dan membalas pesan."
+            },
+            {
+                title: "Personal Fitness & Health Coaching",
+                icon: "fa-dumbbell",
+                desc: "Membimbing gaya hidup sehat, pola makan dasar, dan mendampingi program kebugaran."
+            }
+        ];
+
+        // Mencegah duplikasi data jika skrip dimuat ulang
+        newSkills.forEach(skill => {
+            if (!easySkillsList.some(item => item.title === skill.title)) {
+                easySkillsList.push(skill);
+            }
+        });
+    }
+
+    // 3. Menyesuaikan logika pencarian otomatis agar mengenali kata kunci bidang baru
+    if (typeof generateCareerOptionsBasedOnInput === 'function') {
+        const originalGenerate = generateCareerOptionsBasedOnInput;
+
+        window.generateCareerOptionsBasedOnInput = function (input) {
+            const lowerInput = input.toLowerCase();
+            const container = document.getElementById('career-options-container');
+
+            if (!container) return originalGenerate(input);
+
+            // Daftar opsi dinamis berdasarkan kata kunci input pengguna
+            let customMatches = [];
+
+            if (lowerInput.includes('masak') || lowerInput.includes('makanan') || lowerInput.includes('kuliner') || lowerInput.includes('kue')) {
+                customMatches.push(
+                    { title: "Culinary Entrepreneur / Cloud Kitchen Owner", desc: "Membangun bisnis F&B modern berbasis pengiriman online.", icon: "fa-utensils" },
+                    { title: "Food Stylist & Content Reviewer", desc: "Seni menata dan mengulas makanan secara visual.", icon: "fa-camera-retro" }
+                );
+            }
+
+            if (lowerInput.includes('video') || lowerInput.includes('foto') || lowerInput.includes('youtube') || lowerInput.includes('tiktok') || lowerInput.includes('konten')) {
+                customMatches.push(
+                    { title: "Short-Form Content Creator (TikTok/Reels)", desc: "Spesialis pembuat video kreatif berdurasi pendek.", icon: "fa-mobile-screen-button" },
+                    { title: "Videographer & Video Editor Professional", desc: "Memproduksi video profesional untuk brand dan media.", icon: "fa-clapperboard" },
+                    { title: "Commercial Photographer", desc: "Fotografer spesialis komersial, produk, dan event.", icon: "fa-camera" }
+                );
+            }
+
+            if (lowerInput.includes('olahraga') || lowerInput.includes('gym') || lowerInput.includes('fitnes') || lowerInput.includes('sehat')) {
+                customMatches.push(
+                    { title: "Personal Trainer & Fitness Coach", desc: "Pelatih kebugaran profesional dan konsultan gaya hidup sehat.", icon: "fa-dumbbell" },
+                    { title: "Sports Content Creator & Analyst", desc: "Mengulas taktik dan berita olahraga di platform digital.", icon: "fa-trophy" }
+                );
+            }
+
+            if (lowerInput.includes('bisnis') || lowerInput.includes('jual') || lowerInput.includes('dagang') || lowerInput.includes('marketing') || lowerInput.includes('promo')) {
+                customMatches.push(
+                    { title: "Digital Business Development / Entrepreneur", desc: "Mengembangkan bisnis skala baru memanfaatkan saluran digital.", icon: "fa-chart-pie" },
+                    { title: "Social Media Specialist & Community Manager", desc: "Mengelola strategi pemasaran media sosial dan komunitas.", icon: "fa-bullhorn" }
+                );
+            }
+
+            // Jika ada hasil yang cocok dengan kata kunci baru, tampilkan hasil tersebut
+            if (customMatches.length > 0) {
+                container.innerHTML = '';
+                customMatches.forEach(c => {
+                    container.innerHTML += `
+                        <div class="option-card" onclick="renderCareerDetail('${c.title}')">
+                            <i class="fa-solid ${c.icon} icon"></i>
+                            <h4>${c.title}</h4>
+                            <p>${c.desc}</p>
+                        </div>
+                    `;
+                });
+                goToStep('step-2');
+            } else {
+                // Jika tidak ada kata kunci khusus yang cocok, jalankan fungsi bawaan yang sudah ada
+                originalGenerate(input);
+            }
+        };
+    }
+})();
