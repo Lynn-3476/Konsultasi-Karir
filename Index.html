@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerAI - Konsultasi Karir Masa Depan</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-brain-circuit"></i>
+                <span>Career<strong>AI</strong></span>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn active" id="btn-flow-tab" onclick="switchMainTab('flow')">
+                    <i class="fa-solid fa-compass"></i> Konsultasi Karir
+                </button>
+                <button class="nav-btn" id="btn-chat-tab" onclick="switchMainTab('chat')">
+                    <i class="fa-solid fa-comments"></i> Chat AI Bebas
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+
+        <!-- ALUR KONSULTASI INTERAKTIF -->
+        <div id="flow-section" class="section-content">
+            
+            <!-- PROGRESS BAR -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <!-- STEP 1: WELCOME & ABILITY CHECK -->
+            <div id="step-1" class="step-card active">
+                <div class="step-header">
+                    <div class="step-badge">Langkah 1</div>
+                    <h2>Selamat Datang di CareerAI</h2>
+                    <p>Mari temukan jalur karir yang paling cocok dengan potensi Anda di masa depan.</p>
+                </div>
+                <div class="question-box">
+                    <h3>Apakah Anda sudah tahu bidang atau kemampuan utama yang Anda kuasai saat ini?</h3>
+                    <div class="btn-group vertical">
+                        <button class="btn btn-primary" onclick="handleStep1Choice(true)">
+                            <i class="fa-solid fa-circle-check"></i> Ya, Saya Tahu Kemampuan Saya
+                        </button>
+                        <button class="btn btn-outline" onclick="handleStep1Choice(false)">
+                            <i class="fa-solid fa-circle-question"></i> Belum Tahu / Belum Yakin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1A: INPUT KNOWN SKILL -->
+            <div id="step-1a" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Input Kemampuan</div>
+                    <h2>Apa Bidang / Kemampuan Anda?</h2>
+                    <p>Sebutkan kemampuan utama atau keahlian yang sudah Anda miliki saat ini.</p>
+                </div>
+                <div class="form-group">
+                    <label for="user-skill-input">Kemampuan Utama Anda:</label>
+                    <input type="text" id="user-skill-input" placeholder="Contoh: Pemrograman Web, Desain Grafis, Analisis Data, Bahasa Inggris...">
+                    <small class="hint">Bisa lebih dari satu, pisahkan dengan koma.</small>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="goToStep('step-1')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+                    <button class="btn btn-primary" onclick="submitKnownSkill()">Lanjutkan <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 1B: HABIT OBSERVATION (IF SKILL UNKNOWN) -->
+            <div id="step-1b" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Observasi Kebiasaan</div>
+                    <h2>Mari Mulai Dari Kebiasaan Anda</h2>
+                    <p>Jangan khawatir jika belum tahu keahlian Anda. Kebiasaan sehari-hari sering kali merupakan potensi karir terbesar yang tersembunyi.</p>
+                </div>
+                <div class="form-group">
+                    <label for="user-habits-input">Kebiasaan atau Hobi Sehari-hari Anda:</label>
+                    <textarea id="user-habits-input" rows="4" placeholder="Contoh: Saya suka mengedit foto/video pendek di HP, menyusun barang dengan rapi, mendengarkan curhat teman, bermain game strategi, membaca novel..."></textarea>
+                </div>
+                <div class="btn-group vertical">
+                    <button class="btn btn-primary" onclick="analyzeHabits()">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Analisis Kebiasaan Saya
+                    </button>
+                    <button class="btn btn-secondary-link" onclick="handleNoHabits()">
+                        Saya merasa tidak punya kebiasaan khusus yang bernilai karir
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 1C: EASY SKILLS RECOMMENDATION (IF NO HABITS) -->
+            <div id="step-1c" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Rekomendasi Kemampuan Populer</div>
+                    <h2>Kemampuan Mudah Dipelajari & Berpeluang Tinggi</h2>
+                    <p>Berikut adalah beberapa kemampuan masa depan yang relatif cepat dipelajari dan memiliki prospek kerja yang sangat luas:</p>
+                </div>
+                <div class="card-grid" id="easy-skills-grid">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="goToStep('step-1b')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+                </div>
+            </div>
+
+            <!-- STEP 2: CAREER SELECTION & CHALLENGES -->
+            <div id="step-2" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Rekomendasi Karir</div>
+                    <h2>Pilih Karir Yang Ingin Anda Dalami</h2>
+                    <p>Berdasarkan informasi Anda, berikut adalah karir yang berpeluang besar di masa depan:</p>
+                </div>
+                <div id="career-options-container" class="card-grid">
+                    <!-- Populated dynamic by JS -->
+                </div>
+            </div>
+
+            <!-- STEP 3: CHALLENGE REVIEW & CONFIRMATION -->
+            <div id="step-3" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Detail Karir & Tantangan</div>
+                    <h2 id="selected-career-title">Nama Karir</h2>
+                    <p>Pelajari apa yang harus Anda persiapkan serta tantangan nyata di bidang ini.</p>
+                </div>
+
+                <div class="career-detail-box">
+                    <div class="detail-section">
+                        <h3><i class="fa-solid fa-clipboard-check"></i> Persiapan & Yang Perlu Dipelajari:</h3>
+                        <ul id="career-prep-list" class="styled-list"></ul>
+                    </div>
+                    <div class="detail-section highlight-danger">
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> Tantangan & Sikap Yang Diperlukan:</h3>
+                        <ul id="career-challenge-list" class="styled-list warning"></ul>
+                    </div>
+                </div>
+
+                <div class="confirmation-box">
+                    <h3>Apakah Anda merasa sanggup & berkomitmen menghadapi tantangan ini?</h3>
+                    <div class="btn-group">
+                        <button class="btn btn-danger" onclick="rejectCareer()">
+                            <i class="fa-solid fa-xmark"></i> Tidak Sanggup (Pilih Karir Lain)
+                        </button>
+                        <button class="btn btn-success" onclick="acceptCareer()">
+                            <i class="fa-solid fa-check"></i> Sanggup & Siap Menerima Tantangan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: PASSION VS SKILL DILEMMA -->
+            <div id="step-4" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Evaluasi Passion vs Kemampuan</div>
+                    <h2>Bagaimana Dengan Passion Anda?</h2>
+                    <p>Terkadang karir yang sesuai kemampuan berbeda dengan kegemaran (*passion*) mendalam kita.</p>
+                </div>
+                
+                <div class="dilemma-box">
+                    <p>Apakah Anda memiliki <strong>passion (minat mendalam)</strong> di bidang yang berbeda dari karir/kemampuan yang dipilih tadi?</p>
+                    <div class="btn-group vertical">
+                        <button class="btn btn-primary" onclick="handlePassionDilemma(true)">
+                            <i class="fa-solid fa-heart"></i> Ya, Passion Saya Berbeda Dari Kemampuan Saya
+                        </button>
+                        <button class="btn btn-outline" onclick="handlePassionDilemma(false)">
+                            <i class="fa-solid fa-thumbs-up"></i> Tidak, Karir Ini Sudah Sesuai Passion & Kemampuan Saya
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SUB-STEP: PASSION SELECTION -->
+                <div id="passion-choice-sub" class="sub-step-box hidden">
+                    <hr class="divider">
+                    <h3>Pilihan Jalan Karir Anda:</h3>
+                    <p>Anda bisa memilih untuk memprioritaskan passion atau memaksimalkan kemampuan saat ini.</p>
+
+                    <div class="dilemma-cards">
+                        <div class="choice-card" onclick="selectPath('passion')">
+                            <div class="icon"><i class="fa-solid fa-fire"></i></div>
+                            <h4>Ikuti Passion</h4>
+                            <p>Mengejar apa yang Anda cintai. Jika belum mahir, AI akan membantu Anda mempelajari skill baru dari nol.</p>
+                            <button class="btn btn-sm btn-primary">Pilih Passion</button>
+                        </div>
+                        <div class="choice-card" onclick="selectPath('skill')">
+                            <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                            <h4>Fokus Pada Kemampuan</h4>
+                            <p>Mengoptimalkan keahlian yang sudah ada untuk progres karir yang lebih cepat & stabil.</p>
+                            <button class="btn btn-sm btn-outline">Pilih Kemampuan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: FINAL ROADMAP & CONTENT LEARNING -->
+            <div id="step-5" class="step-card">
+                <div class="step-header">
+                    <div class="step-badge">Rencana Aksi Karir</div>
+                    <h2 id="final-roadmap-title">Roadmap Karir Anda</h2>
+                    <p id="final-roadmap-subtitle">Panduan langkah nyata dan sumber belajar Anda.</p>
+                </div>
+
+                <!-- ENCOURAGEMENT MESSAGE -->
+                <div class="encouragement-banner">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p id="encouragement-text">Pesan semangat...</p>
+                </div>
+
+                <!-- ROADMAP CONTENT -->
+                <div class="roadmap-content">
+                    <h3><i class="fa-solid fa-graduation-cap"></i> Modul & Materi Yang Harus Dipelajari:</h3>
+                    <div id="learning-modules-list" class="modules-grid"></div>
+
+                    <h3 class="margin-top"><i class="fa-solid fa-photo-film"></i> Platform & Video Rekomendasi Belajar:</h3>
+                    <div class="video-platforms-grid" id="platform-links-grid">
+                        <a href="#" target="_blank" class="platform-card yt" id="yt-link">
+                            <i class="fa-brands fa-youtube"></i>
+                            <div>
+                                <strong>YouTube Tutorials</strong>
+                                <span id="yt-query">Cari Video Tutorial</span>
+                            </div>
+                        </a>
+                        <a href="#" target="_blank" class="platform-card tt" id="tt-link">
+                            <i class="fa-brands fa-tiktok"></i>
+                            <div>
+                                <strong>TikTok Tips & Insights</strong>
+                                <span id="tt-query">Cari Edukasi Singkat</span>
+                            </div>
+                        </a>
+                        <a href="#" target="_blank" class="platform-card ig" id="ig-link">
+                            <i class="fa-brands fa-instagram"></i>
+                            <div>
+                                <strong>Instagram Micro-learning</strong>
+                                <span id="ig-query">Cari Komunitas Karir</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="btn-group margin-top">
+                    <button class="btn btn-primary" onclick="restartFlow()">
+                        <i class="fa-solid fa-rotate-right"></i> Mulai Konsultasi Baru
+                    </button>
+                    <button class="btn btn-secondary" onclick="switchMainTab('chat')">
+                        <i class="fa-solid fa-comments"></i> Tanya AI Lebih Detail
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CHAT AI SECTION -->
+        <div id="chat-section" class="section-content hidden">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="ai-profile">
+                        <i class="fa-solid fa-robot"></i>
+                        <div>
+                            <h3>AI Career Consultant</h3>
+                            <span><i class="fa-solid fa-circle online-dot"></i> Siap membantu konsultasi karir 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai">
+                        <div class="message-content">
+                            Halo! Saya AI Konsultan Karir Anda. Anda bisa menanyakan apa saja seputar pilihan karir, perbandingan industri, tips wawancara kerja, hingga cara mengatasi kebingungan menentukan masa depan. Apa yang ingin Anda diskusikan?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-user-input" placeholder="Ketik pertanyaan karir Anda di sini..." onkeypress="handleChatKeyPress(event)">
+                    <button class="btn btn-primary" onclick="sendChatMessage()">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
