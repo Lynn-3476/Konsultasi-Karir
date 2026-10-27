@@ -604,3 +604,178 @@ if (typeof easySkillsList !== 'undefined') {
         };
     }
 })();
+
+// =====================================================================
+// CAREERAI ADVANCED EXPANSION MODULE: DEEPER PROFILING & NEW INDUSTRIES
+// Menambahkan industri baru & memperluas opsi karir lintas sektor.
+// =====================================================================
+
+(function expandAdvancedCareers() {
+    // 1. Menambahkan Database Karir Mendalam untuk Sektor Baru
+    if (typeof careerDatabase !== 'undefined') {
+        const advancedCareers = {
+            // === SEKTOR KESEHATAN MENTAL & KONSELING ===
+            "Career Counselor & Life Coach": {
+                prep: [
+                    "Mempelajari dasar psikologi manusia, komunikasi empatik, dan active listening",
+                    "Memahami metode pengembangan diri (self-improvement) dan goal setting",
+                    "Membangun kredibilitas melalui sertifikasi coaching profesional"
+                ],
+                challenges: [
+                    "Menghadapi beban emosional klien yang kompleks",
+                    "Membutuhkan kesabaran tinggi dalam melihat progress perubahan klien"
+                ]
+            },
+
+            // === SEKTOR HIJAU & ENERGI TERBARUKAN (GREEN TECH) ===
+            "Sustainability & Environmental Analyst": {
+                prep: [
+                    "Memahami regulasi lingkungan hidup, ESG (Environmental, Social, Governance)",
+                    "Kuasai analisis data dampak karbon dan efisiensi energi",
+                    "Mengikuti perkembangan isu perubahan iklim global"
+                ],
+                challenges: [
+                    "Berhadapan dengan kebijakan perusahaan yang lambat berubah",
+                    "Kompleksitas pengumpulan data metrik keberlanjutan"
+                ]
+            },
+
+            // === SEKTOR LOGISTIK & SUPPLY CHAIN ===
+            "Supply Chain & E-Commerce Logistics Specialist": {
+                prep: [
+                    "Memahami alur gudang (warehouse management) dan manajemen stok",
+                    "Kuasai analisis data logistik dan optimalisasi rute pengiriman",
+                    "Pahami sistem operasional platform e-commerce dan ekspedisi"
+                ],
+                challenges: [
+                    "Tekanan operasional tinggi saat musim belanja diskon (flash sale/harbolnas)",
+                    "Mengatasi kendala rantai pasok tak terduga di lapangan"
+                ]
+            },
+
+            // === SEKTOR KEUANGAN & FINTECH ===
+            "Financial Planner & Fintech Consultant": {
+                prep: [
+                    "Menguasai literasi keuangan, investasi, dan manajemen risiko dasar",
+                    "Memahami regulasi sektor jasa keuangan dan produk digital fintech",
+                    "Kuasai kemampuan komunikasi finansial yang mudah dipahami klien"
+                ],
+                challenges: [
+                    "Fluktuasi pasar finansial yang dinamis dan sulit diprediksi",
+                    "Tuntutan kepercayaan dan transparansi etika yang sangat tinggi"
+                ]
+            },
+
+            // === SEKTOR PENULISAN & MEDIA PUBLIKASI ===
+            "UX Writer & Content Strategist": {
+                prep: [
+                    "Memahami dasar psikologi kognitif dan perilaku pengguna aplikasi",
+                    "Kuasai penulisan mikro (microcopy) yang ringkas, jelas, dan solutif",
+                    "Berkolaborasi erat dengan UI/UX Designer dan Product Manager"
+                ],
+                challenges: [
+                    "Menyelaraskan teks panduan yang sangat terbatas dengan fungsi fitur yang kompleks",
+                    "Perubahan arah teks produk yang sering direvisi"
+                ]
+            }
+        };
+
+        // Menggabungkan database baru secara aman
+        Object.assign(careerDatabase, advancedCareers);
+    }
+
+    // 2. Menambahkan Opsi ke 'easySkillsList' untuk Pengguna yang Belum Tahu Keahliannya
+    if (typeof easySkillsList !== 'undefined') {
+        const advancedEasySkills = [
+            {
+                title: "Komunikasi & Pendengar yang Baik",
+                icon: "fa-comments",
+                desc: "Kemampuan memahami masalah orang lain dan memberikan saran bijak (Cocok untuk Konseling/HR)."
+            },
+            {
+                title: "Analisis Data & Riset Lingkungan",
+                icon: "fa-leaf",
+                desc: "Tertarik pada isu alam, efisiensi energi, dan keberlanjutan masa depan bumi."
+            },
+            {
+                title: "Manajemen Logistik & Pengiriman",
+                icon: "fa-truck-fast",
+                desc: "Menyukai keteraturan sistem pengiriman barang, pencatatan stok, dan efisiensi waktu."
+            },
+            {
+                title: "Perencanaan Keuangan Pribadi",
+                icon: "fa-wallet",
+                desc: "Terbiasa mengatur anggaran, mencatat pengeluaran, dan tertarik mempelajari investasi."
+            }
+        ];
+
+        advancedEasySkills.forEach(skill => {
+            if (!easySkillsList.some(item => item.title === skill.title)) {
+                easySkillsList.push(skill);
+            }
+        });
+    }
+
+    // 3. Memperluas Logika Kata Kunci untuk Hasil Rekomendasi Karir yang Lebih Spesifik
+    if (typeof generateCareerOptionsBasedOnInput === 'function') {
+        const baseGenerator = generateCareerOptionsBasedOnInput;
+
+        window.generateCareerOptionsBasedOnInput = function (input) {
+            const query = input.toLowerCase();
+            const container = document.getElementById('career-options-container');
+
+            if (!container) return baseGenerator(input);
+
+            let matchedCareers = [];
+
+            // Pencocokan mendalam berdasarkan kata kunci minat/kebiasaan baru
+            if (query.includes('curhat') || query.includes('dengar') || query.includes('psikologi') || query.includes('bantu orang') || query.includes('solusi')) {
+                matchedCareers.push(
+                    { title: "Career Counselor & Life Coach", desc: "Membimbing individu menemukan arah hidup dan potensi terbaiknya.", icon: "fa-user-nurse" }
+                );
+            }
+
+            if (query.includes('alam') || query.includes('lingkungan') || query.includes('sampah') || query.includes('hijau') || query.includes('bumi')) {
+                matchedCareers.push(
+                    { title: "Sustainability & Environmental Analyst", desc: "Merancang strategi ramah lingkungan untuk masa depan bisnis.", icon: "fa-seedling" }
+                );
+            }
+
+            if (query.includes('kirim') || query.includes('barang') || query.includes('gudang') || query.includes('paket') || query.includes('logistik')) {
+                matchedCareers.push(
+                    { title: "Supply Chain & E-Commerce Logistics Specialist", desc: "Mengelola kelancaran arus pengiriman barang logistik modern.", icon: "fa-boxes-packing" }
+                );
+            }
+
+            if (query.includes('uang') || query.includes('saham') || query.includes('finansial') || query.includes('nabung') || query.includes('investasi')) {
+                matchedCareers.push(
+                    { title: "Financial Planner & Fintech Consultant", desc: "Merencanakan strategi keuangan dan literasi finansial digital.", icon: "fa-chart-pie" }
+                );
+            }
+
+            if (query.includes('tulis') || query.includes('kata') || query.includes('kalimat') || query.includes('copy') || query.includes('bahasa')) {
+                matchedCareers.push(
+                    { title: "UX Writer & Content Strategist", desc: "Menyusun teks antarmuka aplikasi yang ramah dan mudah dipahami.", icon: "fa-pen-nib" }
+                );
+            }
+
+            // Jika ada kecocokan industri baru, render pilihan tersebut
+            if (matchedCareers.length > 0) {
+                container.innerHTML = '';
+                matchedCareers.forEach(c => {
+                    container.innerHTML += `
+                        <div class="option-card" onclick="renderCareerDetail('${c.title}')">
+                            <i class="fa-solid ${c.icon} icon"></i>
+                            <h4>${c.title}</h4>
+                            <p>${c.desc}</p>
+                        </div>
+                    `;
+                });
+                goToStep('step-2');
+            } else {
+                // Jika tidak ditemukan kecocokan khusus, jalankan fungsi bawaan sistem
+                baseGenerator(input);
+            }
+        };
+    }
+})();
