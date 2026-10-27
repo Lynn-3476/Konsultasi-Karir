@@ -218,7 +218,6 @@ function generateCareerOptionsBasedOnInput(input) {
         );
     }
 
-    
     matched.forEach(c => {
         container.innerHTML += `
             <div class="option-card" onclick="renderCareerDetail('${c.title}')">
@@ -228,25 +227,8 @@ function generateCareerOptionsBasedOnInput(input) {
             </div>
         `;
     });
-// =====================================================================
-// DEBUGGING FIX: FUNGSI TOMBOL LANJUTKAN (STEP 1A)
-// Memastikan tombol merespon dengan validasi data yang aman
-// =====================================================================
 
-function submitKnownSkill() {
-    // 1. Cek apakah user sudah memilih salah satu kartu keahlian
-    if (!userState.skills || userState.skills.trim() === "") {
-        alert("Harap klik dan pilih salah satu bidang keahlian terlebih dahulu sebelum melanjutkan!");
-        return; // Menghentikan eksekusi jika belum dipilih agar tidak error
-    }
-    
-    // 2. Jika sudah dipilih, panggil generator karir untuk lanjut ke Step 2
-    if (typeof generateCareerOptionsBasedOnInput === 'function') {
-        generateCareerOptionsBasedOnInput(userState.skills);
-    } else {
-        // Fallback darurat jika fungsi utama belum termuat
-        goToStep('step-2');
-    }
+    goToStep('step-2');
 }
 
 // RENDER DETAIL KARIR & TANTANGAN (STEP 3)
@@ -277,43 +259,23 @@ function rejectCareer() {
     goToStep('step-2');
 }
 
-
+// DILEMA PASSION (STEP 4)
 function handlePassionDilemma(hasDilemma) {
     userState.hasPassionDilemma = hasDilemma;
-    
+    const subBox = document.getElementById('passion-choice-sub');
     if (hasDilemma) {
-        // Berikan informasi ramah kepada user bahwa mereka akan diarahkan ulang
-        alert("Mari kita sesuaikan kembali! Anda akan diarahkan ke halaman pemilihan bidang keahlian agar dapat memilih bidang yang sesuai dengan passion Anda.");
-        
-        // Reset pilihan skill/karir sebelumnya agar bersih saat memilih ulang
-        userState.skills = '';
-        userState.selectedCareer = null;
-        userState.chosenPath = null;
-        
-        // Sembunyikan sub-box jika sempat terbuka
-        const subBox = document.getElementById('passion-choice-sub');
-        if (subBox) {
-            subBox.classList.add('hidden');
-        }
-        
-        // Langsung arahkan kembali ke Langkah 1A (Pemilihan Keahlian / Bidang)
-        goToStep('step-1a');
-        
+        subBox.classList.remove('hidden');
     } else {
-        // Jika user merasa karir sudah sesuai dengan passion & kemampuan
-        const subBox = document.getElementById('passion-choice-sub');
-        if (subBox) {
-            subBox.classList.add('hidden');
-        }
+        subBox.classList.add('hidden');
         userState.chosenPath = 'skill';
         renderFinalRoadmap();
     }
-    }
-    
-    // Berikan efek visual klik pada kartu yang dipilih sebelum pindah step
-    renderFinalRoadmap();
 }
 
+function selectPath(path) {
+    userState.chosenPath = path;
+    renderFinalRoadmap();
+}
 
 // ROADMAP FINAL & INTEGRASI PENCARIAN LEARNING (STEP 5)
 function renderFinalRoadmap() {
