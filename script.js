@@ -218,6 +218,7 @@ function generateCareerOptionsBasedOnInput(input) {
         );
     }
 
+    
     matched.forEach(c => {
         container.innerHTML += `
             <div class="option-card" onclick="renderCareerDetail('${c.title}')">
@@ -227,8 +228,25 @@ function generateCareerOptionsBasedOnInput(input) {
             </div>
         `;
     });
+// =====================================================================
+// DEBUGGING FIX: FUNGSI TOMBOL LANJUTKAN (STEP 1A)
+// Memastikan tombol merespon dengan validasi data yang aman
+// =====================================================================
 
-    goToStep('step-2');
+function submitKnownSkill() {
+    // 1. Cek apakah user sudah memilih salah satu kartu keahlian
+    if (!userState.skills || userState.skills.trim() === "") {
+        alert("Harap klik dan pilih salah satu bidang keahlian terlebih dahulu sebelum melanjutkan!");
+        return; // Menghentikan eksekusi jika belum dipilih agar tidak error
+    }
+    
+    // 2. Jika sudah dipilih, panggil generator karir untuk lanjut ke Step 2
+    if (typeof generateCareerOptionsBasedOnInput === 'function') {
+        generateCareerOptionsBasedOnInput(userState.skills);
+    } else {
+        // Fallback darurat jika fungsi utama belum termuat
+        goToStep('step-2');
+    }
 }
 
 // RENDER DETAIL KARIR & TANTANGAN (STEP 3)
