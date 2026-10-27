@@ -11,3 +11,8 @@ Hal yang dipelajari selama project:
 7.pengujian kembali apakah website berjalan dengan benar setelah mengalami beberapa modifikasi.
 8.debugging dan konsultasi bug di website ke Ai.
 9.Penggunaan Ai untuk membuat website lebih profesional.
+
+peran Ai:
+* Sebagai asisten dalam pengembangan website ini
+* sebagai media konsultasi terhadap bug yang terjadi di website
+* sebagai agen konsultasi prototipe website
